@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Upcoming IPO Dashboard</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+    <div class="conatiner-fuluid">
+        <!-- navbar start -->
+        <div class="row" style="background-color: white;">
+            <div class="colsm-12">
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid my-2 ">
+                        <img src="https://bluestock.in/static/assets/logo/logo.webp" width="210px" type="image/webp"
+                            alt="">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav  me-auto mb-2 mb-lg-0 " style="margin-left: 250px;">
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: rgb(81, 81, 219)"
+                                        href="https://bluestock.in/">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color:black"
+                                        href="https://bluestock.in/screener/">Screener</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: black;" href="https://bluestock.in/market/">
+                                        Market
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: black;" href="#">
+                                        API
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: black;" href="#">
+                                        Careers
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: black;" href="#">
+                                        Blog
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: black;" href="#">
+                                        About us
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" style="color: black;" href="#">
+                                        Products
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+    <!-- Hero Section -->
+    <div class="container text-center my-4">
+        <h1 class="display-5">Upcoming IPOs</h1>
+        <p class="lead">Stay updated with the latest IPOs in the market.</p>
+        <input type="text" class="form-control w-50 mx-auto" id="searchInput" placeholder="Search IPOs...">
+    </div>
+
+    <!-- IPO Cards -->
+    <div class="container">
+        <div class="row" id="ipoCards">
+            <!-- IPO Cards will be inserted here dynamically -->
+        </div>
+    </div>
+
+    <!-- IPO Table -->
+    <div class="container mt-4">
+        <h3 class="mb-3">IPO List</h3>
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Issue Date</th>
+                    <th>Price</th>
+                    <th>Lot Size</th>
+                    <th>Issue Size</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="ipoTable">
+                <!-- IPO Data will be inserted here dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="container d-flex justify-content-center mt-4">
+        <nav>
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <script>
+        // Sample IPO Data
+        const ipoData = [
+            { name: "Hexaware Technologies Ltd", date: "Feb 12-14, 2025", price: "₹674-₹708", lot: "N/A", issueSize: "₹14,868 Cr", status: "Upcoming" },
+            { name: "Ajax Engineering", date: "Feb 10-12, 2025", price: "N/A", lot: "N/A", issueSize: "₹7,196 Cr", status: "Upcoming" },
+            { name: "PS Raj Steels Ltd", date: "Feb 12-14, 2025", price: "₹132-₹140", lot: "N/A", issueSize: "₹140 Cr", status: "Upcoming" },
+            { name: "Voler Car Ltd", date: "Feb 12-14, 2025", price: "₹85-₹90", lot: "N/A", issueSize: "₹144 Cr", status: "Upcoming" },
+            { name: "Maxvolt Energy", date: "Feb 12-14, 2025", price: "₹171-₹180", lot: "N/A", issueSize: "₹196 Cr", status: "Upcoming" },
+            { name: "Zepto", date: "TBA", price: "N/A", lot: "N/A", issueSize: "N/A", status: "Expected" },
+            { name: "Reliance Jio", date: "TBA", price: "N/A", lot: "N/A", issueSize: "N/A", status: "Expected" },
+            { name: "Tata Passenger Electric Mobility", date: "TBA", price: "N/A", lot: "N/A", issueSize: "N/A", status: "Expected" },
+            { name: "Imagine Marketing (boAt)", date: "TBA", price: "N/A", lot: "N/A", issueSize: "N/A", status: "Expected" },
+            { name: "OYO", date: "TBA", price: "N/A", lot: "N/A", issueSize: "N/A", status: "Expected" }
+        ];
+
+        // Function to Load IPOs into Table & Cards
+        function loadIPOs() {
+            const tableBody = document.getElementById("ipoTable");
+            const cardContainer = document.getElementById("ipoCards");
+            tableBody.innerHTML = "";
+            cardContainer.innerHTML = "";
+
+            ipoData.forEach(ipo => {
+                // Populate Table
+                tableBody.innerHTML += `
+                    <tr>
+                        <td>${ipo.name}</td>
+                        <td>${ipo.date}</td>
+                        <td>${ipo.price}</td>
+                        <td>${ipo.lot}</td>
+                        <td>${ipo.issueSize}</td>
+                        <td><span class="badge ${ipo.status === "Upcoming" ? "bg-warning" : "bg-secondary"}">${ipo.status}</span></td>
+                    </tr>
+                `;
+
+                // Populate Cards
+                cardContainer.innerHTML += `
+                    <div class="col-md-4 mb-3">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <h5 class="card-title">${ipo.name}</h5>
+                                <p class="card-text"><strong>Date:</strong> ${ipo.date}</p>
+                                <p class="card-text"><strong>Price:</strong> ${ipo.price}</p>
+                                <p class="card-text"><strong>Lot Size:</strong> ${ipo.lot}</p>
+                                <p class="card-text"><strong>Issue Size:</strong> ${ipo.issueSize}</p>
+                                <span class="badge ${ipo.status === "Upcoming" ? "bg-warning" : "bg-secondary"}">${ipo.status}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Load IPOs on Page Load
+        document.addEventListener("DOMContentLoaded", loadIPOs);
+    </script>
+
+</body>
+</html>
